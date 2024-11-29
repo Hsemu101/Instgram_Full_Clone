@@ -1,0 +1,5 @@
+export const Login = "/login"
+export const Profile = "/p/:username"
+export const Signup = "/signup"
+export const Dashboard = "/"
+export const PageNotFound = "*"
