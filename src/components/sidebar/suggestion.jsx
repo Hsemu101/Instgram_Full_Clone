@@ -6,14 +6,13 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useFetcher } from "react-router-dom";
 
 function Suggestion({ userid, following, docid }) {
-  const [TargetList, setTargetList] = useState(null); 
+  const [TargetList, setTargetList] = useState(null);
 
-  useEffect(()=>{
-    if (!userid){
-      setTargetList(null)
+  useEffect(() => {
+    if (!userid) {
+      setTargetList(null);
     }
-
-  }, [userid])
+  }, [userid]);
 
   useEffect(() => {
     async function MyTargetedList() {
@@ -30,21 +29,19 @@ function Suggestion({ userid, following, docid }) {
   return !userid ? null : !TargetList ? (
     <div className="flex justify-end mt-9 pr-[28vh]">
       <div className="min-w-[25%] ">
-      <Skeleton count={1} height={190} />
+        <Skeleton count={1} height={190} />
       </div>
     </div>
   ) : (
     <>
-      <div className="flex flex-col items-end mt-[2vh] flex-wrap ">
-        <div className="flex justify-start mx-7 min-w-[30%]">
+      <div className="flex flex-col w-[100%] mt-5">
+        <div className="flex items-center align-items  mb-2 ">
           {TargetList.length == 0 ? null : (
             <h1 className="font-medium">Suggestions for you</h1>
           )}
         </div>
-      </div>
 
-      <div className="  flex justify-end mt-5 flex-wrap">
-        <div className="  min-w-[30%] flex flex-col gap-4 mx-7 flex-wrap ">
+        <div className="  mt-4 flex flex-col gap-5">
           {TargetList.map((item) => (
             <SuggestedProfile
               key={item.docId}

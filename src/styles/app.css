@@ -8,4 +8,15 @@
         padding-left: 0px; /* Adjust as needed */
       
       }
+      .AddComment-pl::placeholder{
+        padding-left: 1%;
+        color: #86858d;
+       
+        
+      }
+      @layer base {
+        body {
+            @apply bg-gray-100; /* Replace with your preferred background color */
+        }
+    }
 }

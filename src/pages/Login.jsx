@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FirebaseContext from "../context/firebase";
@@ -34,17 +35,17 @@ function Login() {
      
   return (
     <>
-    <section className="flex flex-col justify-center h-screen"> 
-      <div className="flex justify-center">
+    <section className="flex flex-col justify-center h-screen "> 
+      <div className="flex justify-center ">
         <div
           className={
-            `border border-solid border-gray-300 w-2/3 md:w-1/2 lg:w-1/3 ${Error ? 'h-[450px]' : 'h-[410px]'} `
+            `border border-solid border-gray-300  min-w-[350px] h-[550px] ${Error ? 'h-[450px]' : 'h-[410px]'} `
           }
         >
           <div className="text-center mt-5 text-red-500">
                 <h1>{Error}</h1>
             </div>
-          <div className=" flex justify-center mt-[8%]">
+          <div className=" flex justify-center mt-[4rem]">
             <Link to={ROUTES.Dashboard}><img src={LOGO} alt="#" /></Link>
           </div>
           <form
@@ -53,7 +54,7 @@ function Login() {
             method="POST"
           >
             <input
-              className="w-[75%] border border-solid border-gray-300 mt-7 h-9 placeholder-ml pl-2"
+              className="w-[75%] border border-solid border-gray-300 mt-[3rem] h-9 placeholder-ml pl-2"
               aria-label="Email address"
               placeholder="email"
               type="text"
@@ -71,17 +72,17 @@ function Login() {
             <button
             disabled={Invalid}
               type="submit"
-              className={`mt-4 border border-solid w-[75%]  text-white rounded-full py-[7px] ${Invalid ? 'bg-[#65b4ef]' : 'bg-[#35aaf8]'}`}
+              className={`mt-[3rem] border border-solid w-[75%]  text-white rounded-full py-[7px] ${Invalid ? 'bg-[#65b4ef]' : 'bg-[#35aaf8]'}`}
             >
               Login
             </button>
           </form>
-          <div className="flex items-center mt-5 w-full  ">
+          <div className="flex items-center mt-10 w-full  ">
             <hr className="w-[27%] mr-5 ml-[16%] border-[#DBDBDB]" />
             <p className="text-[#555555]">OR</p>
             <hr className="w-[27%] ml-5 border-[#DBDBDB]" />
           </div>
-          <div className="flex justify-center mt-7 gap-2">
+          <div className="flex justify-center mt-[2rem] gap-2 ">
             <img className="w-[24px]" src={ Facebook } alt="" />
             <p className="text-[#385185] font-bold">Log in with facebook</p>
           </div>
@@ -90,7 +91,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="border border-solid border-gray-300 mx-auto mt-[10px] flex p-5 justify-center gap-2 w-2/3 md:w-1/2 lg:w-1/3 ">
+      <div className="border border-solid border-gray-300 mx-auto mt-[2rem] flex p-5 justify-center gap-2 min-w-[22rem] ">
           <p className="">Don't have an account?</p>
           <Link to={ROUTES.Signup} className="text-[#29C1FB] ">Sign up</Link>
       </div>

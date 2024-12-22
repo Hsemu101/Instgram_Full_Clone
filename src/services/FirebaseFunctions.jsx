@@ -16,6 +16,35 @@ export async function checker(Username) {
   }
 }
 
+export async function ParamsUserFinder(ProfileName) {
+  try {
+    const results = await firebase
+      .firestore()
+      .collection("users")
+      .where("username", "==", ProfileName)
+      .get();
+      if(!results.empty){
+        return {...results.docs[0]?.data(), docId: results.docs[0]?.id}
+      }
+   
+  } catch (error) {
+    console.log("Params", error);
+  }
+}
+
+export async function UpdateForPharams(TargetDoc){
+  try {
+    const result = await firebase.firestore().collection("users").doc(TargetDoc).get()
+    return{...result.data(), docId:TargetDoc }
+  } catch (error) {
+    console.log("Error coming from fireabse service UpdateForPharams ", error)
+  }
+
+}
+
+
+
+
 export async function EmailChecker(EmailInfo) {
   try {
     const EmailChekerResult = await firebase
@@ -58,7 +87,7 @@ export async function GetTheSuggestedUSers(userId, following) {
     } else {
       fetchedData = query.where("userId", "!=", userId);
     }
-    let results = await fetchedData.limit(10).get();
+    let results = await fetchedData.limit(4).get();
 
     let FinalResults = results.docs.map((index) => ({
       ...index.data(),
@@ -72,22 +101,20 @@ export async function GetTheSuggestedUSers(userId, following) {
 }
 
 export async function UpdateUsersFollowing(targetId, MyDocId, IsFollowing) {
-  
-  try{
+  try {
     return await firebase
-    .firestore()
-    .collection("users")
-    .doc(MyDocId)
-    .update({
-      following: IsFollowing
-        ? fieldValue.arrayRemove(targetId)
-        : fieldValue.arrayUnion(targetId),
-    });
-  }catch(error){
-    console.log(error)
-    throw error
+      .firestore()
+      .collection("users")
+      .doc(MyDocId)
+      .update({
+        following: IsFollowing
+          ? fieldValue.arrayRemove(targetId)
+          : fieldValue.arrayUnion(targetId),
+      });
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
- 
 }
 
 export async function UpdateTargetedFollowers(
@@ -95,20 +122,116 @@ export async function UpdateTargetedFollowers(
   MyUserId,
   isFollowed
 ) {
-
-  try{
+  try {
     return await firebase
-    .firestore()
-    .collection("users")
-    .doc(TargetDocId)
-    .update({
-      followers: isFollowed
-        ? fieldValue.arrayRemove(MyUserId)
-        : fieldValue.arrayUnion(MyUserId),
-    });
-  }catch(error){
-    console.log(error)
-    throw error
+      .firestore()
+      .collection("users")
+      .doc(TargetDocId)
+      .update({
+        followers: isFollowed
+          ? fieldValue.arrayRemove(MyUserId)
+          : fieldValue.arrayUnion(MyUserId),
+      });
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
-  
+}
+
+export async function GetPhotosDatabase(userID, following) {
+  try {
+    const response = await firebase
+      .firestore()
+      .collection("photos")
+      .where("userId", "in", following)
+      .get();
+    const MappedResult = response.docs.map((index) => ({
+      ...index.data(),
+      docId: index.id,
+    }));
+
+    const EnhancedResults = await Promise.all(
+      MappedResult.map(async (index) => {
+        let IsLiked = false;
+        if (index.likes.includes(userID)) {
+          IsLiked = true;
+        }
+        const user = await GetUserIdThenUSerInfo(index?.userId);
+        const { username } = user[0];
+        return { ...index, username, IsLiked };
+      })
+    );
+    return EnhancedResults;
+  } catch (error) {
+    console.log("This is the Error:", error);
+  }
+}
+
+export async function LikeUpdater(docid, userid, toggleLike) {
+  await firebase
+    .firestore()
+    .collection("photos")
+    .doc(docid)
+    .update({
+      likes: toggleLike
+        ? fieldValue.arrayRemove(userid)
+        : fieldValue.arrayUnion(userid),
+    }); // toggleLike is gonna be a state i am gonna use for the actions component
+}
+
+export async function PhotosRetriverProfile(userId) {
+  try {
+    const results = await firebase
+      .firestore()
+      .collection("photos")
+      .where("userId", "==", userId)
+      .get();
+
+    if (results.docs.length === 0) {
+      return {};
+    }
+
+    const FinalProduct = results.docs.map((index) => ({
+      ...index.data(),
+      docId: index.id,
+    }));
+
+    return FinalProduct;
+  } catch (error) {
+    console.log("Coming from Photos Retriver Profile function:", error);
+  }
+}
+
+export async function CheckerIfPharamsISFollowing(LoggedInUsername, TargetUid) {
+  try {
+    const result = await firebase
+      .firestore()
+      .collection("users")
+      .where("username", "==", LoggedInUsername)
+      .where("following", "array-contains", TargetUid)
+      .get();
+
+    const [FinalResult = {}] = result.docs.map((index) => ({
+      ...index.data(),
+      DocId: index.id,
+    }));
+    return FinalResult.userId;
+  } catch (error) {
+    console.log(
+      "This is an error coming from the service API in the (CheckerIfPharamsISFollowing) Firebase service",
+      error
+    );
+  }
+}
+
+export async function FollowingAndFollowerAdderPharams(
+  targetId,
+  MyDocId,
+  IsFollowing,
+  TargetDocId,
+  MyUserId,
+  isFollowed
+) {
+  await UpdateUsersFollowing(targetId, MyDocId, IsFollowing);
+  await UpdateTargetedFollowers(TargetDocId, MyUserId, isFollowed);
 }

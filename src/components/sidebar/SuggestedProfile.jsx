@@ -27,7 +27,7 @@ function SuggestedProfile({
       <div className=" flex flex-wrap gap-1 justify-between ">
         {/* Left side of the container */}
         <div className="flex gap-3 flex-wrap items-center ">
-          <img className={"h-[34px]"} src={DefaultImages} alt="" />
+          <img className={"h-[34px] rounded-full w-8 h-8"} src={`/images/avatars/${TargetUsername}.jpg`} alt="" onError={(e)=> e.target.src = DefaultImages} />
           <h1 className="">{TargetUsername}</h1>
         </div>
 
@@ -47,3 +47,4 @@ function SuggestedProfile({
 }
 
 export default SuggestedProfile;
+

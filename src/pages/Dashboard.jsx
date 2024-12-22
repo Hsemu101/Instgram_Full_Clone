@@ -1,23 +1,22 @@
-import React, {useContext} from 'react'
-import AuthListnerContext from "../context/UserAuthContext"
-import Header from "../components/Header"
-import Timeline from "../components/Timeline"
-import Sidebar from "../components/sidebar"
-
+import React, { useContext } from "react";
+import AuthListnerContext from "../context/UserAuthContext";
+import Header from "../components/Header";
+import Timeline from "../components/Timeline";
+import Sidebar from "../components/sidebar";
 
 function Dashboard() {
-// const {UserDetail} = useContext(AuthListnerContext)
-// console.log(UserDetail)
   return (
+    <div>
+      <Header />
+      <div className="grid grid-cols-3 gap-4  ">
+        <Timeline className="" />
 
-         <div>
-          <Header/>
-          <Timeline/>
-          <Sidebar/>
-         <h1 className='text-[45px] font-bold text-center mt-[10%]'></h1>
-       </div>
-
-  )
+        <Sidebar className="" />
+      </div>
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
+
+

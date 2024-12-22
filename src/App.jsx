@@ -12,6 +12,7 @@ function App() {
   const Signup = lazy(()=> import ("./pages/Signup"))
   const ExampleComponent = lazy(()=> import ("./pages/CheckerPAge"))
   const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+  const FlexPractice = lazy(()=> import ("./pages/FlexPractice"))
 
   const UserDetail = UserAuth()
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path={ROUTES.Profile} element={<Profile />} />
           <Route path={ROUTES.Signup} element={<Signup />} />
           <Route path='/chhh' element={<ExampleComponent />} />
+          <Route path='/flex' element={<FlexPractice />} />
           <Route path={ROUTES.PageNotFound} element={<PageNotFound />} />
         </Routes>
       </Suspense>
