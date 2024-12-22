@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 UsershenokAppDataLocalnpm-cache/
+_update-notifier-last-checked
 
 
 *.local

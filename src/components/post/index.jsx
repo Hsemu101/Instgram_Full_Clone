@@ -35,7 +35,7 @@ function MainParent({ AllPictureFiles }) {
   };
   return (
     <>
-      <div className=" flex flex-col flex-wrap items-center font-bold mb-4 ">
+      <div className=" lg:flex flex-col lg:flex-wrap lg:items-center font-bold lg:mb-4 sm:ml-8 ">
         <Header Name={AllPictureFiles.username} />
         <Picture
           src={AllPictureFiles.imageSrc}

@@ -18,7 +18,7 @@ function ProfileHeader({
   const TargetUid = TargetProfile.userId;
   const { UserDetail } = useContext(AuthListnerContext);
   const { user } = LeadingToHeader(UserDetail?.uid);
-  console.log(user);
+  // console.log(user);
 
   const [Following, setIsFollowing] = useState(null);
   const activeButton = TargetUsername
@@ -132,5 +132,6 @@ function ProfileHeader({
 }
 
 export default ProfileHeader;
+
 
 

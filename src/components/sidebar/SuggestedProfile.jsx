@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom"
 import {
   UpdateUsersFollowing,
   UpdateTargetedFollowers,
@@ -21,14 +22,15 @@ function SuggestedProfile({
     setClickChecker(true);
     await UpdateUsersFollowing(targetId, MyDocId, false);
     await UpdateTargetedFollowers(TargetDocId, MyUserId, false);
+
   }
   return !ClickChecker ? (
     <>
       <div className=" flex flex-wrap gap-1 justify-between ">
         {/* Left side of the container */}
         <div className="flex gap-3 flex-wrap items-center ">
-          <img className={"h-[34px] rounded-full w-8 h-8"} src={`/images/avatars/${TargetUsername}.jpg`} alt="" onError={(e)=> e.target.src = DefaultImages} />
-          <h1 className="">{TargetUsername}</h1>
+         <Link to={`/p/${TargetUsername}`}><img className={"h-[34px] rounded-full w-8 h-8"} src={`/images/avatars/${TargetUsername}.jpg`} alt="" onError={(e)=> e.target.src = DefaultImages} /></Link> 
+          <Link to={`/p/${TargetUsername}`}><h1 className="">{TargetUsername}</h1></Link>
         </div>
 
         {/* right side of the container */}
