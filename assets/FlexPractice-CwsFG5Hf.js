@@ -1,0 +1,1 @@
+import{j as e}from"./index-Bm2Ggpdo.js";function l(){return e.jsx("div",{className:" flex border border-yellow-900 min-h-[352px] justify-center ",children:e.jsx("div",{className:"flex border border-green-700 min-w-[123px]",children:"Hello"})})}export{l as default};
