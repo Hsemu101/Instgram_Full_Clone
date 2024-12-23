@@ -60,7 +60,7 @@ function ActionIcons({
         </div>
       </div>
       <div className="w-full bg-white">
-        <p className="lg:pl-4 lg:mb-1 sm:pl-4">
+        <p className="lg:pl-4 lg:mb-1 sm:pl-4 max-639:pl-4">
           {likes === 1 ? `${likes} like` : likes === 0 ? "" : `${likes} likes`}
         </p>
       </div>
