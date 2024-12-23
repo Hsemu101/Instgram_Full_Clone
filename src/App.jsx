@@ -18,7 +18,7 @@ function App() {
   return (
     
     <AuthListnerContext.Provider value={{UserDetail}}>
-    <Router>
+    <Router basename="/Instgram_Full_Clone">
       <Suspense fallback={<h2> Loading.... </h2>}>
         <Routes>
           <Route path={ROUTES.Dashboard} element={<Dashboard />} />

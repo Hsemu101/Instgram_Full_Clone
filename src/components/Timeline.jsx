@@ -13,7 +13,7 @@ function Timeline() {
 
   return (
     <>
-      <div className=" lg:flex lg:flex-col lg:flex-wrap lg:items-end pr-[5rem] container col-span-2 mt-5   ">
+      <div className=" lg:flex lg:flex-col lg:flex-wrap lg:items-end pr-[5rem] container col-span-2 mt-5  max-639:ml-[4rem]  ">
         {user?.following == 0 ? (
           <div>Please start following users to see your timeline</div>
         ) : PictureFiles ? (

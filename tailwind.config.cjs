@@ -10,6 +10,7 @@ module.exports = {
     screens:{
       'custom-lapotp' : '1657px', // Applies styles at 1657px and up
       'custom-large': '1870px', // Applies styles at 1870px and up
+      'max-639': {max: '639px'}
     }
     },
   },

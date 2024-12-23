@@ -138,6 +138,7 @@ function Signup() {
       <div className="ml-[840px]  mt-[108px] custom-lapotp:ml-[800px]  custom-large:ml-[900px]">
         Get the app.
       </div>
+     
       <div className="flex sm:ml-[100px] custom-lapotp:ml-[714px] custom-lapotp:pb-[75px] mt-[18px] custom-large:ml-[830px]">
         <a href="https://play.google.com/store/apps/details?id=com.instagram.android">
           <img className="w-[120px]" src={Android} alt="" />

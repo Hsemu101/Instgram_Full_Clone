@@ -10,7 +10,7 @@ function Header({ Name }) {
             {" "}
             <img
               className="rounded-full w-8 h-8"
-              src={`/images/avatars/${Name}.jpg`}
+              src={`${import.meta.env.BASE_URL}/images/avatars/${Name}.jpg`}
             />
           </Link>
           <Link to={`p/${Name}`}>{Name}</Link>

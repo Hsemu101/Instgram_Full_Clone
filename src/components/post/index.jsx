@@ -38,7 +38,7 @@ function MainParent({ AllPictureFiles }) {
       <div className=" lg:flex flex-col lg:flex-wrap lg:items-center font-bold lg:mb-4 sm:ml-8 ">
         <Header Name={AllPictureFiles.username} />
         <Picture
-          src={AllPictureFiles.imageSrc}
+          src={`${import.meta.env.BASE_URL}${AllPictureFiles.imageSrc}`}
           DocID={AllPictureFiles.docId}
           likes={countLikes}
           Isliked={LikeToggler}
